@@ -16,6 +16,7 @@ import com.nianlun.objectboxdb.database.ObjectBox;
 import com.nianlun.objectboxdb.entity.User;
 import com.nianlun.objectboxdb.utils.NameUtils;
 import com.nianlun.objectboxdb.utils.SnowflakeIdGenerator;
+import java.security.SecureRandom;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,8 +92,8 @@ public class ObjectBoxDBActivity extends AppCompatActivity implements View.OnCli
         if (id == R.id.btn_add) {
             User user = new User();
             user.setUserId(String.valueOf(mIdWorker.nextId()));
-            user.setUserName(NameUtils.createRandomZHName(new Random().nextInt(4) + 1));
-            user.setAge(18 + new Random().nextInt(10));
+            user.setUserName(NameUtils.createRandomZHName(new SecureRandom().nextInt(4) + 1));
+            user.setAge(18 + new SecureRandom().nextInt(10));
 
             // 插入新用户
             mUserBox.put(user);
@@ -111,7 +112,7 @@ public class ObjectBoxDBActivity extends AppCompatActivity implements View.OnCli
             Toast.makeText(this, "删除用户", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.btn_update) {
             User user = mUserList.get(mUserList.size() - 1);
-            user.setUserName(NameUtils.createRandomZHName(new Random().nextInt(4) + 1));
+            user.setUserName(NameUtils.createRandomZHName(new SecureRandom().nextInt(4) + 1));
 
             //更新最末用户
             mUserBox.put(user);
@@ -147,7 +148,7 @@ public class ObjectBoxDBActivity extends AppCompatActivity implements View.OnCli
         mUserBox.removeAll();
 
         mUserList = new ArrayList<>();
-        Random random = new Random();
+        Random random = new SecureRandom();
         for (int i = 0; i < 10; i++) {
             User user = new User();
             user.setUserId(String.valueOf(mIdWorker.nextId()));
