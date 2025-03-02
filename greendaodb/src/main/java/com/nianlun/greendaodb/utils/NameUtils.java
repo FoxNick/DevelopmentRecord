@@ -1,6 +1,7 @@
 package com.nianlun.greendaodb.utils;
 
 import java.io.UnsupportedEncodingException;
+import java.security.SecureRandom;
 import java.util.Random;
 
 public class NameUtils {
@@ -10,7 +11,7 @@ public class NameUtils {
         for (int i = 0; i < len; i++) {
             String str = null;
             int highPos, lowPos; // 定义高低位
-            Random random = new Random();
+            Random random = new SecureRandom();
             highPos = (176 + Math.abs(random.nextInt(39))); // 获取高位值
             lowPos = (161 + Math.abs(random.nextInt(93))); // 获取低位值
             byte[] b = new byte[2];

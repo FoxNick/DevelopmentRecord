@@ -16,6 +16,7 @@ import com.nianlun.greendaodb.database.DaoUtilsStore;
 import com.nianlun.greendaodb.entity.User;
 import com.nianlun.greendaodb.utils.NameUtils;
 import com.nianlun.greendaodb.utils.SnowflakeIdGenerator;
+import java.security.SecureRandom;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,8 +64,8 @@ public class GreenDaoDBActivity extends AppCompatActivity implements View.OnClic
             User user = new User();
             user.setId((long) mUserList.size());
             user.setUserId(String.valueOf(mIdWorker.nextId()));
-            user.setUserName(NameUtils.createRandomZHName(new Random().nextInt(4) + 1));
-            user.setAge(18 + new Random().nextInt(10));
+            user.setUserName(NameUtils.createRandomZHName(new SecureRandom().nextInt(4) + 1));
+            user.setAge(18 + new SecureRandom().nextInt(10));
 
             // 插入新用户
             DaoUtilsStore.getInstance().getUserDaoUtils().insert(user);
@@ -83,7 +84,7 @@ public class GreenDaoDBActivity extends AppCompatActivity implements View.OnClic
             Toast.makeText(this, "删除用户", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.btn_update) {
             User user = mUserList.get(mUserList.size() - 1);
-            user.setUserName(NameUtils.createRandomZHName(new Random().nextInt(4) + 1));
+            user.setUserName(NameUtils.createRandomZHName(new SecureRandom().nextInt(4) + 1));
 
             //更新最末用户
             DaoUtilsStore.getInstance().getUserDaoUtils().update(user);
@@ -119,7 +120,7 @@ public class GreenDaoDBActivity extends AppCompatActivity implements View.OnClic
         DaoUtilsStore.getInstance().getUserDaoUtils().deleteAll();
 
         mUserList = new ArrayList<>();
-        Random random = new Random();
+        Random random = new SecureRandom();
         for (int i = 0; i < 10; i++) {
             User user = new User();
             user.setId((long) i);
